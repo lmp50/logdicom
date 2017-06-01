@@ -14,6 +14,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+private slots:
+    void slotOpenFile();
+    void slotOpenFolder();
+    void slotExit();
 
 private:
     Ui::MainWindow *ui;
