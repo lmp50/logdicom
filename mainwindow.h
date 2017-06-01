@@ -19,6 +19,8 @@ private slots:
     void slotOpenFolder();
     void slotExit();
 
+    void slotAbout();
+
 private:
     Ui::MainWindow *ui;
 };

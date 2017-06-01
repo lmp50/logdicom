@@ -23,19 +23,25 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuBar->addMenu(mnFile); // Добавляем пункты меню в menuBar, т.е. те, которые будут отображаться в гл. окне
 
     QMenu * mnHelp = new QMenu("Help"); // Меню помощь
-    ui->menuBar->addMenu(mnHelp);
-}
 
-//*****************************************************************************
-void MainWindow::slotExit()
-{
-    close();
+    QAction *msgAbout = new QAction("Exit",mnFile);
+    connect(msgAbout, SIGNAL(triggered()), this, SLOT(slotAbout()));
+    mnFile->addAction(msgAbout);
+
+    ui->menuBar->addMenu(mnFile); // Добавляем пункты меню в menuBar, т.е. те, которые будут отображаться в гл. окне
+    ui->menuBar->addMenu(mnHelp);
 }
 
 //*****************************************************************************
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+//*****************************************************************************
+void MainWindow::slotExit()
+{
+    close();
 }
 
 //*****************************************************************************
@@ -46,6 +52,12 @@ void MainWindow::slotOpenFile()
 
 //*****************************************************************************
 void MainWindow::slotOpenFolder()
+{
+
+}
+
+//*****************************************************************************
+void MainWindow::slotAbout()
 {
 
 }
