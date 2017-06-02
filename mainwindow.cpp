@@ -24,9 +24,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QMenu * mnHelp = new QMenu("Help"); // Меню помощь
 
-    QAction *msgAbout = new QAction("Exit",mnFile);
+    QAction *msgAbout = new QAction("About logdicom",mnHelp);
     connect(msgAbout, SIGNAL(triggered()), this, SLOT(slotAbout()));
-    mnFile->addAction(msgAbout);
+    mnHelp->addAction(msgAbout);
 
     ui->menuBar->addMenu(mnFile); // Добавляем пункты меню в menuBar, т.е. те, которые будут отображаться в гл. окне
     ui->menuBar->addMenu(mnHelp);
