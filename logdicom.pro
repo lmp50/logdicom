@@ -18,3 +18,14 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+TRANSLATIONS += \
+    Translations/logdicom_ru.ts
+
+tr.commands = lupdate $$_PRO_FILE_ && lrelease $$_PRO_FILE_
+    PRE_TARGETDEPS += tr
+    QMAKE_EXTRA_TARGETS += tr
+
+RESOURCES += \
+    logd.qrc
+

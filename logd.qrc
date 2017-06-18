@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>Translations/logdicom_ru.qm</file>
+    </qresource>
+</RCC>

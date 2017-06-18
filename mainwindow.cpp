@@ -7,24 +7,28 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QMenu * mnFile = new QMenu("File"); // создаём меню Файл
+    QMenu * mnFile = new QMenu(tr("File")); // создаём меню Файл
 
-    QAction *msgOpenFile = new QAction("Open file",mnFile);
+    QAction *msgOpenFile = new QAction(tr("Open file"),mnFile);
     connect(msgOpenFile, SIGNAL(triggered()), this, SLOT(slotOpenFile()));
     mnFile->addAction(msgOpenFile);
 
-    QAction *msgOpenFolder = new QAction("Open folder",mnFile);
+    QAction *msgOpenFolder = new QAction(tr("Open folder"),mnFile);
     connect(msgOpenFolder, SIGNAL(triggered()), this, SLOT(slotOpenFolder()));
     mnFile->addAction(msgOpenFolder);
 
-    QAction *msgExit = new QAction("Exit",mnFile);
+    QAction *msgExit = new QAction(tr("Exit"),mnFile);
     connect(msgExit, SIGNAL(triggered()), this, SLOT(slotExit()));
     mnFile->addAction(msgExit);
     ui->menuBar->addMenu(mnFile); // Добавляем пункты меню в menuBar, т.е. те, которые будут отображаться в гл. окне
 
-    QMenu * mnHelp = new QMenu("Help"); // Меню помощь
+    QMenu * mnHelp = new QMenu(tr("Help")); // Меню помощь
 
-    QAction *msgAbout = new QAction("About logdicom",mnHelp);
+    QAction *msgContents = new QAction(tr("Contents"),mnHelp);
+    connect(msgContents, SIGNAL(triggered()), this, SLOT(slotContents()));
+    mnHelp->addAction(msgContents);
+
+    QAction *msgAbout = new QAction(tr("About logdicom"),mnHelp);
     connect(msgAbout, SIGNAL(triggered()), this, SLOT(slotAbout()));
     mnHelp->addAction(msgAbout);
 
