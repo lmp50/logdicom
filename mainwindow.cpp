@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFileDialog>
 
 //*****************************************************************************
 MainWindow::MainWindow(QWidget *parent) :
@@ -51,13 +52,17 @@ void MainWindow::slotExit()
 //*****************************************************************************
 void MainWindow::slotOpenFile()
 {
-
+    QString sFileName;
+    sFileName = QFileDialog::getOpenFileName(this,
+        tr("Open File"), "/home", tr("Dicom Files (*.dicom);;All Files(*)"));
 }
 
 //*****************************************************************************
 void MainWindow::slotOpenFolder()
 {
-
+    QString sFolderName;
+    sFolderName = QFileDialog::getExistingDirectory(this,
+        tr("Open Folder"), "/home", QFileDialog::ShowDirsOnly);
 }
 
 //*****************************************************************************
