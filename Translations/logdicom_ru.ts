@@ -9,53 +9,64 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="11"/>
+        <location filename="../mainwindow.cpp" line="12"/>
         <source>File</source>
         <translation type="unfinished">Файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="13"/>
+        <location filename="../mainwindow.cpp" line="14"/>
         <source>Open file</source>
         <translation type="unfinished">Открыть файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="17"/>
+        <location filename="../mainwindow.cpp" line="18"/>
         <source>Open folder</source>
         <translation type="unfinished">Открыть папку</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="21"/>
+        <location filename="../mainwindow.cpp" line="22"/>
         <source>Exit</source>
         <translation type="unfinished">Выход</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="26"/>
+        <location filename="../mainwindow.cpp" line="27"/>
         <source>Help</source>
         <translation type="unfinished">Помощь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="28"/>
+        <location filename="../mainwindow.cpp" line="29"/>
         <source>Contents</source>
         <translation type="unfinished">Содержание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="32"/>
+        <location filename="../mainwindow.cpp" line="33"/>
         <source>About logdicom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="57"/>
+        <location filename="../mainwindow.cpp" line="58"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="57"/>
+        <location filename="../mainwindow.cpp" line="58"/>
         <source>Dicom Files (*.dicom);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="65"/>
+        <location filename="../mainwindow.cpp" line="70"/>
         <source>Open Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="79"/>
+        <source>About Program logdicom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="79"/>
+        <source>logdicom 0.1.1 
+ Viewing dicom files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

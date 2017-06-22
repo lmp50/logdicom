@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
+#include <QMessageBox>
 
 //*****************************************************************************
 MainWindow::MainWindow(QWidget *parent) :
@@ -55,6 +56,10 @@ void MainWindow::slotOpenFile()
     QString sFileName;
     sFileName = QFileDialog::getOpenFileName(this,
         tr("Open File"), "/home", tr("Dicom Files (*.dicom);;All Files(*)"));
+    if (sFileName != "") {
+
+    }
+
 }
 
 //*****************************************************************************
@@ -63,11 +68,14 @@ void MainWindow::slotOpenFolder()
     QString sFolderName;
     sFolderName = QFileDialog::getExistingDirectory(this,
         tr("Open Folder"), "/home", QFileDialog::ShowDirsOnly);
+    if (sFolderName != "") {
+
+    }
 }
 
 //*****************************************************************************
 void MainWindow::slotAbout()
 {
-
+    QMessageBox::information(0, tr("About Program logdicom"), tr("logdicom 0.1.1 \n Viewing dicom files"));
 }
 
