@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(msgContents, SIGNAL(triggered()), this, SLOT(slotContents()));
     mnHelp->addAction(msgContents);
 
-    QAction *msgAbout = new QAction(tr("About logdicom"),mnHelp);
+    QAction *msgAbout = new QAction(tr("About Program logdicom"),mnHelp);
     connect(msgAbout, SIGNAL(triggered()), this, SLOT(slotAbout()));
     mnHelp->addAction(msgAbout);
 

@@ -4,19 +4,19 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="13"/>
+        <location filename="../mainwindow.ui" line="14"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="12"/>
         <source>File</source>
-        <translation type="unfinished">Файл</translation>
+        <translation>Файл</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="14"/>
         <source>Open file</source>
-        <translation type="unfinished">Открыть файл</translation>
+        <translation>Открыть файл</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="18"/>
@@ -39,9 +39,8 @@
         <translation type="unfinished">Содержание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="33"/>
         <source>About logdicom</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">О logdicom</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="58"/>
@@ -59,9 +58,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="33"/>
         <location filename="../mainwindow.cpp" line="79"/>
         <source>About Program logdicom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">О программе logdicom</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="79"/>
