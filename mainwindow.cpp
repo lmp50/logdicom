@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(msgOpenFolder, SIGNAL(triggered()), this, SLOT(slotOpenFolder()));
     mnFile->addAction(msgOpenFolder);
 
+
+
     QAction *msgExit = new QAction(tr("Exit"),mnFile);
     connect(msgExit, SIGNAL(triggered()), this, SLOT(slotExit()));
     mnFile->addAction(msgExit);
