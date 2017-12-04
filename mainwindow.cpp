@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
+#include "dialhelp.h"
+
 
 //*****************************************************************************
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,7 +21,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(msgOpenFolder, SIGNAL(triggered()), this, SLOT(slotOpenFolder()));
     mnFile->addAction(msgOpenFolder);
 
+    QAction *msgExport = new QAction(tr("Export"),mnFile);
+    connect(msgExport, SIGNAL(triggered()), this, SLOT(slotExport()));
+    mnFile->addAction(msgExport);
 
+    QAction *msgImport = new QAction(tr("Import"),mnFile);
+    connect(msgImport, SIGNAL(triggered()), this, SLOT(slotImport()));
+    mnFile->addAction(msgImport);
 
     QAction *msgExit = new QAction(tr("Exit"),mnFile);
     connect(msgExit, SIGNAL(triggered()), this, SLOT(slotExit()));
@@ -59,7 +67,15 @@ void MainWindow::slotOpenFile()
     sFileName = QFileDialog::getOpenFileName(this,
         tr("Open File"), "/home", tr("Dicom Files (*.dicom);;All Files(*)"));
     if (sFileName != "") {
-
+        QFile file(sFileName);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+            return;
+        QByteArray line;
+        line = file.read(128); //Первые 128 символов содержимое не определено (обычно там нули)
+        line = file.read(4);
+        if (line != "DICM") //Далее 4 символа - DICM
+            QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
+        file.close();
     }
 
 }
@@ -74,6 +90,14 @@ void MainWindow::slotOpenFolder()
 
     }
 }
+
+//*****************************************************************************
+void MainWindow::slotContents()
+{
+    DialHelp *frmHelp = new DialHelp();
+    frmHelp->show();
+}
+
 
 //*****************************************************************************
 void MainWindow::slotAbout()

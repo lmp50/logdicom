@@ -13,11 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    dialhelp.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    dialhelp.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dialhelp.ui
 
 TRANSLATIONS += \
     Translations/logdicom_ru.ts

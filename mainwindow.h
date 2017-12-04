@@ -19,6 +19,7 @@ private slots:
     void slotOpenFolder();
     void slotExit();
 
+    void slotContents();
     void slotAbout();
 
 private:
