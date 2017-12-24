@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QTranslator>
+#include "classlogdicom.h"
+
+classLogdicom * logdicom;
+
 
 int main(int argc, char *argv[])
 {
@@ -10,8 +14,7 @@ int main(int argc, char *argv[])
     translator.load(":/Translations/logdicom_" + QLocale::system().name());
     a.installTranslator(&translator);
 
-    MainWindow w;
-    w.show();
+    logdicom = new classLogdicom();
 
     return a.exec();
 }

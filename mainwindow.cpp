@@ -3,7 +3,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "dialhelp.h"
+#include "classlogdicom.h"
 
+extern classLogdicom * logdicom;
 
 //*****************************************************************************
 MainWindow::MainWindow(QWidget *parent) :
@@ -94,8 +96,12 @@ void MainWindow::slotOpenFolder()
 //*****************************************************************************
 void MainWindow::slotContents()
 {
-    DialHelp *frmHelp = new DialHelp();
-    frmHelp->show();
+    if ( logdicom->frmDialHelp == NULL) {
+        logdicom->frmDialHelp = new DialHelp();
+        logdicom->frmDialHelp->setModal(false);
+        logdicom->frmDialHelp->show();
+    }
+    logdicom->frmDialHelp->activateWindow();
 }
 
 
