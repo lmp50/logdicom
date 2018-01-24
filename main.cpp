@@ -2,8 +2,12 @@
 #include <QApplication>
 #include <QTranslator>
 #include "classlogdicom.h"
+#include "classfiledicom.h"
+#include "constdefine.h"
 
-classLogdicom * logdicom;
+
+classLogdicom * logdicom;   // главный класс приложения содержащий все формы
+classFiledicom * filedicom[MAX_DATA_ELEMENT]; //класс содержащий данные файла dicomm
 
 
 int main(int argc, char *argv[])

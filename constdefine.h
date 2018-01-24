@@ -1,0 +1,6 @@
+#ifndef CONSTDEFINE_H
+#define CONSTDEFINE_H
+
+#define MAX_DATA_ELEMENT 1000
+
+#endif // CONSTDEFINE_H

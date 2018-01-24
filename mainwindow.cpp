@@ -4,8 +4,11 @@
 #include <QMessageBox>
 #include "dialhelp.h"
 #include "classlogdicom.h"
+#include "classfiledicom.h"
+#include "constdefine.h"
 
 extern classLogdicom * logdicom;
+extern classFiledicom * filedicom[MAX_DATA_ELEMENT];
 
 //*****************************************************************************
 MainWindow::MainWindow(QWidget *parent) :
@@ -66,21 +69,104 @@ void MainWindow::slotExit()
 void MainWindow::slotOpenFile()
 {
     QString sFileName;
+    int iDataElementNo = 0;
+    quint64 i64Pos = 0;
     sFileName = QFileDialog::getOpenFileName(this,
         tr("Open File"), "/home", tr("Dicom Files (*.dicom);;All Files(*)"));
     if (sFileName != "") {
         QFile file(sFileName);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        if (!file.open(QIODevice::ReadOnly))
             return;
         QByteArray line;
         line = file.read(128); //Первые 128 символов содержимое не определено (обычно там нули)
         line = file.read(4);
+        i64Pos = 132;
         if (line != "DICM") //Далее 4 символа - DICM
             QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
+        while (readDataElement(line,&file,iDataElementNo,i64Pos)) {  //прочитать значение данных
+
+        }
+
         file.close();
     }
 
 }
+
+//*****************************************************************************
+bool MainWindow::readDataElement(QByteArray line, QFile * file, int &iDataElementNo,quint64 &i64Pos)
+{
+    line = file->read(2); i64Pos += 2;
+    if (line.length() == 0) {
+        return false;
+    }
+    if (line.length() < 2) {
+        QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
+        return false;
+    }
+
+    filedicom[iDataElementNo] = new classFiledicom;
+    filedicom[iDataElementNo]->setGroupNumber(line);
+
+    line = file->read(2); i64Pos += 2;
+    if (line.length() < 2) {
+        QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
+        return false;
+    }
+    filedicom[iDataElementNo]->setElementNumber(line);
+
+    line = file->read(2); i64Pos += 2;
+    if (line.length() < 2) {
+        QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
+        return false;
+    }
+    filedicom[iDataElementNo]->setVR(line);
+    if ( ((line[0] == 'O') && (line[1] == 'B')) || ((line[0] == 'O') && (line[1] == 'W')) || ((line[0] == 'O') && (line[1] == 'F')) ||
+        ((line[0] == 'S') && (line[1] == 'Q')) || ((line[0] == 'U') && (line[1] == 'T')) || ((line[0] == 'U') && (line[1] == 'N')) ) {
+        filedicom[iDataElementNo]->setDataElementType(32);
+    }
+    else {
+        filedicom[iDataElementNo]->setDataElementType(16);
+    }
+
+    if (filedicom[iDataElementNo]->getDataElementType() == 16) {
+        line = file->read(2); i64Pos += 2;
+        if (line.length() < 2) {
+            QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
+            return false;
+        }
+        filedicom[iDataElementNo]->setDataElementLength(line);
+    }
+    else {
+        line = file->read(2); i64Pos += 2;
+        if (line.length() < 2) {
+            QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
+            return false;
+        }
+        line = file->read(4); i64Pos += 4;
+        if (line.length() < 4) {
+            QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
+            return false;
+        }
+        filedicom[iDataElementNo]->setDataElementLength(line);
+    }
+
+    line = file->read(filedicom[iDataElementNo]->getDataElementLength());
+    i64Pos += filedicom[iDataElementNo]->getDataElementLength();
+    if (quint32(line.length()) != filedicom[iDataElementNo]->getDataElementLength()) {
+        QMessageBox::warning(0,"Warning","Неправильная длина элемента данных");
+        return false;
+    }
+    filedicom[iDataElementNo]->setDataElementValue(line);
+
+    if (iDataElementNo < (MAX_DATA_ELEMENT - 1))
+        iDataElementNo++;
+    else {
+        QMessageBox::warning(0,"Warning","Превышено максимальное количество элементов данных - " + QString::number(MAX_DATA_ELEMENT));
+        return false;
+    }
+    return true;
+}    \
+
 
 //*****************************************************************************
 void MainWindow::slotOpenFolder()

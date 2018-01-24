@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFileDialog>
 
 namespace Ui {
 class MainWindow;
@@ -24,6 +25,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    bool readDataElement(QByteArray line, QFile *file, int &iDataElementNo, quint64 &i64Pos);
 };
 
 #endif // MAINWINDOW_H

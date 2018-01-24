@@ -15,11 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     dialhelp.cpp \
-    classlogdicom.cpp
+    classlogdicom.cpp \
+    classfiledicom.cpp
 
 HEADERS  += mainwindow.h \
     dialhelp.h \
-    classlogdicom.h
+    classlogdicom.h \
+    classfiledicom.h \
+    constdefine.h
 
 FORMS    += mainwindow.ui \
     dialhelp.ui
