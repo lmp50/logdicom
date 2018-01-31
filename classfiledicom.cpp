@@ -11,15 +11,15 @@ classFiledicom::classFiledicom(QObject *parent) : QObject(parent)
 void classFiledicom::setGroupNumber(QByteArray baGroup)
 {
     if (baGroup.length() == 2) {
-        m_i16Group = baGroup[0] + baGroup[1]*256;
+        m_i16Group = (quint8)baGroup[0] + (quint8)baGroup[1]*256;
     }
 }
 
 //*****************************************************************************
-// Получить номер группы в виде строки длиной 4 символа
+// Получить номер группы в виде строки длиной 4 символав шеснадцатеричном виде
 QString classFiledicom::getGroupNumberString()
 {
-    return QString::number(m_i16Group).rightJustified(4,'0',true);
+    return QString::number(m_i16Group,16).rightJustified(4,'0',true);
 }
 
 //*****************************************************************************
@@ -27,15 +27,15 @@ QString classFiledicom::getGroupNumberString()
 void classFiledicom::setElementNumber(QByteArray baElem)
 {
     if (baElem.length() == 2) {
-        m_i16Elem = baElem[0] + baElem[1]*256;
+        m_i16Elem = (quint8)baElem[0] + (quint8)baElem[1]*256;
     }
 }
 
 //*****************************************************************************
-// Получить номер элемента в виде строки длиной 4 символа
+// Получить номер элемента в виде строки длиной 4 символа в шестнадцатеричном виде
 QString classFiledicom::getElementNumberString()
 {
-    return QString::number(m_i16Elem).rightJustified(4,'0',true);
+    return QString::number(m_i16Elem,16).rightJustified(4,'0',true);
 }
 
 //*****************************************************************************
@@ -72,7 +72,7 @@ quint8 classFiledicom::getDataElementType()
 
 //*****************************************************************************
 // Установить длину элемента данных
-void classFiledicom::setDataElementLength(QByteArray baLength)
+quint32 classFiledicom::setDataElementLength(QByteArray baLength)
 {
     if (baLength.length() == 2) {
         m_i32DataElementLength = (quint8)baLength[0] + (quint8)baLength[1]*256;
@@ -80,6 +80,7 @@ void classFiledicom::setDataElementLength(QByteArray baLength)
     else if (baLength.length() == 4) {
         m_i32DataElementLength = (quint8)baLength[0] + (quint8)baLength[1]*256 + (quint8)baLength[2]*256*256 + (quint8)baLength[3]*256*256*256;
     }
+    return m_i32DataElementLength;
 }
 
 //*****************************************************************************

@@ -24,7 +24,7 @@ public slots:
     void setDataElementType(quint8 i8Type);
     quint8 getDataElementType();
 
-    void setDataElementLength(QByteArray baLength);
+    quint32 setDataElementLength(QByteArray baLength);
     quint32 getDataElementLength();
 
     void setDataElementValue(QByteArray baValue);

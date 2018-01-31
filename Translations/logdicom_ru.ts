@@ -57,7 +57,12 @@
         <translation type="unfinished">Содержание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="197"/>
+        <location filename="../mainwindow.cpp" line="75"/>
+        <source>All Files *.* (*);;Dicom Files *.dicom (*.dicom)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="205"/>
         <source>logdicom 0.1.1 
  Viewing dicom files</source>
         <translation type="unfinished"></translation>
@@ -67,24 +72,19 @@
         <translation type="obsolete">О logdicom</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="176"/>
+        <location filename="../mainwindow.cpp" line="184"/>
         <source>Open Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="48"/>
-        <location filename="../mainwindow.cpp" line="197"/>
+        <location filename="../mainwindow.cpp" line="205"/>
         <source>About Program logdicom</source>
         <translation type="unfinished">О программе logdicom</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="75"/>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="75"/>
-        <source>Dicom Files (*.dicom);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

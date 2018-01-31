@@ -72,7 +72,7 @@ void MainWindow::slotOpenFile()
     int iDataElementNo = 0;
     quint64 i64Pos = 0;
     sFileName = QFileDialog::getOpenFileName(this,
-        tr("Open File"), "/home", tr("Dicom Files (*.dicom);;All Files(*)"));
+        tr("Open File"), "/home", tr("All Files *.* (*);;Dicom Files *.dicom (*.dicom)"));
     if (sFileName != "") {
         QFile file(sFileName);
         if (!file.open(QIODevice::ReadOnly))
@@ -88,6 +88,7 @@ void MainWindow::slotOpenFile()
         }
 
         file.close();
+        QMessageBox::information(0,"Info","Обработка файла прошла успешно. Всего групп " + QString::number(iDataElementNo));
     }
 
 }
@@ -128,13 +129,14 @@ bool MainWindow::readDataElement(QByteArray line, QFile * file, int &iDataElemen
         filedicom[iDataElementNo]->setDataElementType(16);
     }
 
+    quint32 i32Length;
     if (filedicom[iDataElementNo]->getDataElementType() == 16) {
         line = file->read(2); i64Pos += 2;
         if (line.length() < 2) {
             QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
             return false;
         }
-        filedicom[iDataElementNo]->setDataElementLength(line);
+        i32Length = filedicom[iDataElementNo]->setDataElementLength(line);
     }
     else {
         line = file->read(2); i64Pos += 2;
@@ -147,7 +149,13 @@ bool MainWindow::readDataElement(QByteArray line, QFile * file, int &iDataElemen
             QMessageBox::warning(0,"Warning","Неправильная структура файла DICOM");
             return false;
         }
-        filedicom[iDataElementNo]->setDataElementLength(line);
+        i32Length = filedicom[iDataElementNo]->setDataElementLength(line);
+    }
+    if (i32Length > 1000 ) {
+        QMessageBox::warning(0,"Warning","Длина группы " + filedicom[iDataElementNo]->getGroupNumberString() +
+        " элемент " + filedicom[iDataElementNo]->getElementNumberString() +
+        " равна " + QString::number(i32Length));
+
     }
 
     line = file->read(filedicom[iDataElementNo]->getDataElementLength());
