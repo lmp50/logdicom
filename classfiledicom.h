@@ -29,6 +29,7 @@ public slots:
 
     void setDataElementValue(QByteArray baValue);
     QString getDataElementValueString();
+    QByteArray getDataElementValueByteArray();
 
 private:
     quint16 m_i16Group;

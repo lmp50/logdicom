@@ -166,6 +166,38 @@ bool MainWindow::readDataElement(QByteArray line, QFile * file, int &iDataElemen
     }
     filedicom[iDataElementNo]->setDataElementValue(line);
 
+/*
+    if (filedicom[iDataElementNo]->getDataElementLength() > 1000) {
+        QFile file("3");
+        if (!file.open(QIODevice::ReadWrite))
+            return false;
+        file.write(line);
+        file.close();
+        QGraphicsScene *scene = new QGraphicsScene;
+        QByteArray baData(filedicom[iDataElementNo]->getDataElementValueByteArray().left(filedicom[iDataElementNo]->getDataElementValueByteArray().length()));
+        QPixmap * pmData = new QPixmap;
+        pmData->loadFromData(line);
+        scene->addPixmap(QPixmap("3"));
+        scene->addText("proba");
+        ui->graphicsView->setScene(scene);
+        ui->graphicsView->show();
+    }
+*/
+
+    if (filedicom[iDataElementNo]->getDataElementLength() < 1000) {
+        if ( (filedicom[iDataElementNo]->getGroupNumberString() == "0028") && (filedicom[iDataElementNo]->getElementNumberString() == "0010") ) {
+            quint64 iSum = 0;
+            for (quint8 i = 0 ; i < filedicom[iDataElementNo]->getDataElementLength(); i++) {
+                iSum += (quint8)filedicom[iDataElementNo]->getDataElementValueByteArray().at(i)*(i*256);
+            }
+            ui->plainTextEdit->appendPlainText(filedicom[iDataElementNo]->getGroupNumberString() + ":" + filedicom[iDataElementNo]->getElementNumberString()
+                + "  Rows: " + QString::number(iSum) );
+        }
+        else
+            ui->plainTextEdit->appendPlainText(filedicom[iDataElementNo]->getGroupNumberString() + ":" + filedicom[iDataElementNo]->getElementNumberString()
+                + "  " + filedicom[iDataElementNo]->getDataElementValueString());
+
+    }
     if (iDataElementNo < (MAX_DATA_ELEMENT - 1))
         iDataElementNo++;
     else {

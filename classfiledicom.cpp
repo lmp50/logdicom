@@ -104,6 +104,14 @@ QString classFiledicom::getDataElementValueString()
     return m_sValue;
 }
 
+//*****************************************************************************
+// Прочитать значение элемента данных
+QByteArray classFiledicom::getDataElementValueByteArray()
+{
+    QByteArray  ba;
+    ba = m_sValue.toLocal8Bit();
+    return ba;
+}
 
 
 

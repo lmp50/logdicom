@@ -62,7 +62,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="205"/>
+        <location filename="../mainwindow.cpp" line="216"/>
+        <source>Open Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="237"/>
         <source>logdicom 0.1.1 
  Viewing dicom files</source>
         <translation type="unfinished"></translation>
@@ -72,13 +77,8 @@
         <translation type="obsolete">О logdicom</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="184"/>
-        <source>Open Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.cpp" line="48"/>
-        <location filename="../mainwindow.cpp" line="205"/>
+        <location filename="../mainwindow.cpp" line="237"/>
         <source>About Program logdicom</source>
         <translation type="unfinished">О программе logdicom</translation>
     </message>
