@@ -6,6 +6,7 @@
 #include "classlogdicom.h"
 #include "classfiledicom.h"
 #include "constdefine.h"
+#include <math.h>
 
 extern classLogdicom * logdicom;
 extern classFiledicom * filedicom[MAX_DATA_ELEMENT];
@@ -188,13 +189,24 @@ bool MainWindow::readDataElement(QByteArray line, QFile * file, int &iDataElemen
         if ( (filedicom[iDataElementNo]->getGroupNumberString() == "0028") && (filedicom[iDataElementNo]->getElementNumberString() == "0010") ) {
             quint64 iSum = 0;
             for (quint8 i = 0 ; i < filedicom[iDataElementNo]->getDataElementLength(); i++) {
-                iSum += (quint8)filedicom[iDataElementNo]->getDataElementValueByteArray().at(i)*(i*256);
+                iSum += (quint8)filedicom[iDataElementNo]->getDataElementValueByteArray().at(i)*(pow(256,i));
             }
             ui->plainTextEdit->appendPlainText(filedicom[iDataElementNo]->getGroupNumberString() + ":" + filedicom[iDataElementNo]->getElementNumberString()
+                + "  " + filedicom[iDataElementNo]->getVRString() +
                 + "  Rows: " + QString::number(iSum) );
+        }
+        else if ( (filedicom[iDataElementNo]->getGroupNumberString() == "0028") && (filedicom[iDataElementNo]->getElementNumberString() == "0011") ) {
+            quint64 iSum = 0;
+            for (quint8 i = 0 ; i < filedicom[iDataElementNo]->getDataElementLength(); i++) {
+                iSum += (quint8)filedicom[iDataElementNo]->getDataElementValueByteArray().at(i)*(pow(256,i));
+            }
+            ui->plainTextEdit->appendPlainText(filedicom[iDataElementNo]->getGroupNumberString() + ":" + filedicom[iDataElementNo]->getElementNumberString()
+                + "  " + filedicom[iDataElementNo]->getVRString() +
+                + "  Columns: " + QString::number(iSum) );
         }
         else
             ui->plainTextEdit->appendPlainText(filedicom[iDataElementNo]->getGroupNumberString() + ":" + filedicom[iDataElementNo]->getElementNumberString()
+                + "  " + filedicom[iDataElementNo]->getVRString() +
                 + "  " + filedicom[iDataElementNo]->getDataElementValueString());
 
     }

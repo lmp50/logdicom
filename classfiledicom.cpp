@@ -94,23 +94,21 @@ quint32 classFiledicom::getDataElementLength()
 // Установить значение элемента данных
 void classFiledicom::setDataElementValue(QByteArray baValue)
 {
-    m_sValue = QString(baValue);
+    m_baValue = baValue;
 }
 
 //*****************************************************************************
 // Прочитать значение элемента данных
 QString classFiledicom::getDataElementValueString()
 {
-    return m_sValue;
+    return QString(m_baValue);
 }
 
 //*****************************************************************************
 // Прочитать значение элемента данных
 QByteArray classFiledicom::getDataElementValueByteArray()
 {
-    QByteArray  ba;
-    ba = m_sValue.toLocal8Bit();
-    return ba;
+    return m_baValue;
 }
 
 

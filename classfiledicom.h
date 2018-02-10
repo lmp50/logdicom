@@ -37,7 +37,7 @@ private:
     QString m_sVR;
     quint8 m_i8DataElementType;
     quint32 m_i32DataElementLength;
-    QString m_sValue;
+    QByteArray m_baValue;
 
 };
 
